@@ -1,0 +1,8 @@
+interface:
+  display_name: "PNW Bike Events Promote"
+  short_description: "Clone and sync selected events into planning calendars."
+  default_prompt: "Use $pnw-bike-events-promote to take selected events from PNW Bike Events and create or refresh linked copies in Tentative Calendar or my primary calendar without changing the master event."
+
+policy:
+  allow_implicit_invocation: false
+

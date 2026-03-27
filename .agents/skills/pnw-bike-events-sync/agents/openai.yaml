@@ -1,0 +1,8 @@
+interface:
+  display_name: "PNW Bike Events Sync"
+  short_description: "Reconcile organizer batches into the master bike calendar."
+  default_prompt: "Use $pnw-bike-events-sync to compare prior-season PNW Bike Events entries with current official sources, then prepare or apply a verified update for one organizer family at a time."
+
+policy:
+  allow_implicit_invocation: false
+

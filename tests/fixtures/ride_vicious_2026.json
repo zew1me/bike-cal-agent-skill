@@ -1,0 +1,30 @@
+[
+  {
+    "summary": "Vicious - Heaven of the South",
+    "start": "2026-03-01",
+    "end": "2026-03-02",
+    "family": "ride-vicious",
+    "source_key": "vicious-heaven-of-the-south-2026",
+    "all_day": true,
+    "description": "Official event page for Heaven of the South.",
+    "location": "Enumclaw, WA",
+    "source_url": "https://www.rideviciouscycle.com/events",
+    "extended_private": {
+      "pnw_source_url": "https://www.rideviciouscycle.com/events"
+    }
+  },
+  {
+    "summary": "Vicious - Mudslinger",
+    "start": "2026-04-19",
+    "end": "2026-04-20",
+    "family": "ride-vicious",
+    "source_key": "vicious-mudslinger-2026",
+    "all_day": true,
+    "description": "Official event page for Mudslinger.",
+    "location": "Pacific Raceways, WA",
+    "source_url": "https://www.rideviciouscycle.com/events",
+    "extended_private": {
+      "pnw_source_url": "https://www.rideviciouscycle.com/events"
+    }
+  }
+]
