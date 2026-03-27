@@ -18,14 +18,17 @@ Use this skill to maintain the master `PNW Bike Events` calendar.
    uv run python .agents/skills/pnw-bike-events-sync/scripts/build_seed_catalog.py --year 2025
    ```
 3. Pick exactly one source family and read the family notes in `references/source-registry.md`.
-4. Gather current-year candidate events from official pages or a manual schedule capture and save them as JSON shaped like `tests/fixtures/ride_vicious_2026.json`.
+4. Gather current-year candidate events from official pages or a manual schedule capture. For Ride Vicious, use the built-in source adapter:
+   ```bash
+   uv run python .agents/skills/pnw-bike-events-sync/scripts/fetch_ride_vicious.py --target-year 2026
+   ```
 5. Build a reconciliation report:
    ```bash
    uv run python .agents/skills/pnw-bike-events-sync/scripts/reconcile_batch.py \
      --family ride-vicious \
      --target-year 2026 \
      --seed-catalog reports/seeds-2025.json \
-     --candidates tests/fixtures/ride_vicious_2026.json
+     --candidates reports/ride-vicious-2026-candidates.json
    ```
 6. Inspect the plan JSON before writing anything.
 7. Apply the plan only when every action is verified:
@@ -45,6 +48,7 @@ Use this skill to maintain the master `PNW Bike Events` calendar.
 ## Resources
 
 - `scripts/build_seed_catalog.py` builds a normalized prior-season seed file from the current master calendar.
+- `scripts/fetch_ride_vicious.py` fetches the current Ride Vicious batch from official source pages.
 - `scripts/reconcile_batch.py` compares normalized candidates against prior-season seeds and emits an insert/patch/unchanged plan.
 - `scripts/apply_batch.py` applies a verified plan through `gws`.
 - `references/source-registry.md` lists the default source families, URLs, and handling notes.

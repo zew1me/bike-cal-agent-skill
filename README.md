@@ -48,11 +48,19 @@ uv run python .agents/skills/pnw-bike-events-sync/scripts/build_seed_catalog.py 
 Prepare a reconciliation report for one organizer family:
 
 ```bash
+uv run python .agents/skills/pnw-bike-events-sync/scripts/fetch_ride_vicious.py \
+  --target-year 2026 \
+  --output reports/ride-vicious-2026-candidates.json
+```
+
+Then reconcile that live official-source batch against the prior-season seeds:
+
+```bash
 uv run python .agents/skills/pnw-bike-events-sync/scripts/reconcile_batch.py \
   --family ride-vicious \
   --target-year 2026 \
   --seed-catalog reports/seeds-2025.json \
-  --candidates tests/fixtures/ride_vicious_2026.json \
+  --candidates reports/ride-vicious-2026-candidates.json \
   --output reports/ride-vicious-2026-plan.json
 ```
 
