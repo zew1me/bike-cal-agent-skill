@@ -52,3 +52,35 @@ def test_fixture_candidate_file_can_be_loaded() -> None:
     assert len(payload) == 2
     assert payload[0]["family"] == "ride-vicious"
 
+
+def test_reconcile_family_does_not_patch_prior_year_summary_match() -> None:
+    existing = [
+        CalendarEvent(
+            summary="Cascade - STP",
+            start="2025-07-12",
+            end="2025-07-14",
+            family="cascade-major-rides",
+            source_key="stp-2025",
+            description="Old STP",
+            event_id="old-stp",
+        )
+    ]
+    candidates = [
+        CalendarEvent(
+            summary="Cascade - STP",
+            start="2026-07-11",
+            end="2026-07-13",
+            family="cascade-major-rides",
+            source_key="stp-2026",
+            description="New STP",
+            location="University of Washington E-18 Lot",
+        )
+    ]
+    plan = reconcile_family(
+        family="cascade-major-rides",
+        target_year=2026,
+        calendar_name="PNW Bike Events",
+        existing=existing,
+        candidates=candidates,
+    )
+    assert [action.action for action in plan.actions] == ["insert"]

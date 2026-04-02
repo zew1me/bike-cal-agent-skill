@@ -64,6 +64,44 @@ uv run python .agents/skills/pnw-bike-events-sync/scripts/reconcile_batch.py \
   --output reports/ride-vicious-2026-plan.json
 ```
 
+Fetch the posted Cascade major rides batch from official pages:
+
+```bash
+uv run python .agents/skills/pnw-bike-events-sync/scripts/fetch_cascade_major_rides.py \
+  --target-year 2026 \
+  --output reports/cascade-major-rides-2026-candidates.json
+```
+
+Then reconcile that batch:
+
+```bash
+uv run python .agents/skills/pnw-bike-events-sync/scripts/reconcile_batch.py \
+  --family cascade-major-rides \
+  --target-year 2026 \
+  --seed-catalog reports/seeds-2025.json \
+  --candidates reports/cascade-major-rides-2026-candidates.json \
+  --output reports/cascade-major-rides-2026-plan.json
+```
+
+Build the Sticky Bidon / Pacific Raceways race series from the official 2026 schedule graphic:
+
+```bash
+uv run python .agents/skills/pnw-bike-events-sync/scripts/fetch_sticky_bidon_raceways.py \
+  --target-year 2026 \
+  --output reports/sticky-bidon-raceways-2026-candidates.json
+```
+
+Then reconcile that batch:
+
+```bash
+uv run python .agents/skills/pnw-bike-events-sync/scripts/reconcile_batch.py \
+  --family sticky-bidon-raceways \
+  --target-year 2026 \
+  --seed-catalog reports/seeds-2025.json \
+  --candidates reports/sticky-bidon-raceways-2026-candidates.json \
+  --output reports/sticky-bidon-raceways-2026-plan.json
+```
+
 Apply a verified batch to `PNW Bike Events`:
 
 ```bash
@@ -80,6 +118,16 @@ uv run python .agents/skills/pnw-bike-events-promote/scripts/promote_events.py \
 ```
 
 Use `--dry-run` on the apply and promote scripts to inspect actions without writing changes.
+
+Clean up legacy duplicates after inserting canonical synced events:
+
+```bash
+uv run python .agents/skills/pnw-bike-events-sync/scripts/dedupe_calendar.py \
+  --calendar "PNW Bike Events" \
+  --match "Cascade -" \
+  --time-min "2026-07-01T00:00:00-07:00" \
+  --time-max "2026-09-01T00:00:00-07:00"
+```
 
 ## Calendars
 

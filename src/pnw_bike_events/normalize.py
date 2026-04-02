@@ -23,8 +23,10 @@ def build_source_key(family: str, summary: str, start: str) -> str:
 
 
 def google_event_to_model(item: dict[str, Any]) -> CalendarEvent:
-    start = item.get("start", {}).get("date") or item.get("start", {}).get("dateTime")
-    end = item.get("end", {}).get("date") or item.get("end", {}).get("dateTime")
+    start_payload = item.get("start", {})
+    end_payload = item.get("end", {})
+    start = start_payload.get("date") or start_payload.get("dateTime")
+    end = end_payload.get("date") or end_payload.get("dateTime")
     summary = item.get("summary", "Untitled Event")
     description = item.get("description", "")
     family = classify_family(summary, description)
@@ -44,6 +46,7 @@ def google_event_to_model(item: dict[str, Any]) -> CalendarEvent:
         family=family,
         source_key=source_key,
         all_day=all_day,
+        timezone=start_payload.get("timeZone") or end_payload.get("timeZone"),
         description=description,
         location=item.get("location", ""),
         event_id=item.get("id"),
@@ -69,6 +72,9 @@ def model_to_google_body(event: CalendarEvent) -> dict[str, Any]:
     else:
         start = {"dateTime": event.start}
         end = {"dateTime": event.end}
+        if event.timezone:
+            start["timeZone"] = event.timezone
+            end["timeZone"] = event.timezone
 
     body: dict[str, Any] = {
         "summary": event.summary,
@@ -81,4 +87,3 @@ def model_to_google_body(event: CalendarEvent) -> dict[str, Any]:
         "extendedProperties": {"private": private_props},
     }
     return body
-

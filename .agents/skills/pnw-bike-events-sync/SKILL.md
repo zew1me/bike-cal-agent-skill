@@ -18,9 +18,12 @@ Use this skill to maintain the master `PNW Bike Events` calendar.
    uv run python .agents/skills/pnw-bike-events-sync/scripts/build_seed_catalog.py --year 2025
    ```
 3. Pick exactly one source family and read the family notes in `references/source-registry.md`.
-4. Gather current-year candidate events from official pages or a manual schedule capture. For Ride Vicious, use the built-in source adapter:
+4. Gather current-year candidate events from official pages or a manual schedule capture. For built-in source adapters:
    ```bash
    uv run python .agents/skills/pnw-bike-events-sync/scripts/fetch_ride_vicious.py --target-year 2026
+   uv run python .agents/skills/pnw-bike-events-sync/scripts/fetch_cascade_major_rides.py --target-year 2026
+   uv run python .agents/skills/pnw-bike-events-sync/scripts/fetch_sticky_bidon_raceways.py --target-year 2026
+   uv run python .agents/skills/pnw-bike-events-sync/scripts/fetch_wider_pnw_marquee.py --target-year 2026
    ```
 5. Build a reconciliation report:
    ```bash
@@ -36,6 +39,10 @@ Use this skill to maintain the master `PNW Bike Events` calendar.
    uv run python .agents/skills/pnw-bike-events-sync/scripts/apply_batch.py \
      --plan reports/ride-vicious-2026-plan.json
    ```
+8. If the calendar already has older legacy entries for the same event, run the dedupe pass:
+   ```bash
+   uv run python .agents/skills/pnw-bike-events-sync/scripts/dedupe_calendar.py --match "Cascade -"
+   ```
 
 ## Rules
 
@@ -49,7 +56,11 @@ Use this skill to maintain the master `PNW Bike Events` calendar.
 
 - `scripts/build_seed_catalog.py` builds a normalized prior-season seed file from the current master calendar.
 - `scripts/fetch_ride_vicious.py` fetches the current Ride Vicious batch from official source pages.
+- `scripts/fetch_cascade_major_rides.py` fetches the currently posted Cascade flagship rides from official source pages.
+- `scripts/fetch_sticky_bidon_raceways.py` builds the Pacific Raceways timed series from the official 2026 schedule image plus Sticky Bidon series context.
+- `scripts/fetch_wider_pnw_marquee.py` builds the current verified wider-net marquee batch from official 2026 pages such as Tour de Bloom, Kettle Mettle, Tour de Whatcom, and Rebecca's Private Idaho.
 - `scripts/reconcile_batch.py` compares normalized candidates against prior-season seeds and emits an insert/patch/unchanged plan.
 - `scripts/apply_batch.py` applies a verified plan through `gws`.
+- `scripts/dedupe_calendar.py` removes older duplicate entries while keeping the canonical synced event with `pnw_source_*` metadata.
 - `references/source-registry.md` lists the default source families, URLs, and handling notes.
 - `references/event-policy.md` captures which event types belong in scope.

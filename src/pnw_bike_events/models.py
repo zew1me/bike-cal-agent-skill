@@ -12,6 +12,7 @@ class CalendarEvent:
     family: str
     source_key: str
     all_day: bool = True
+    timezone: str | None = None
     description: str = ""
     location: str = ""
     event_id: str | None = None
@@ -67,3 +68,16 @@ class PromotionResult:
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
+
+@dataclass(slots=True)
+class DedupeResult:
+    calendar: str
+    summary: str
+    year: str
+    kept_event_id: str
+    deleted_event_id: str
+    action: str
+    reason: str
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)

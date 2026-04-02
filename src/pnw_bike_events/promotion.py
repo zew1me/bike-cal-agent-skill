@@ -19,6 +19,7 @@ def build_promoted_copy(source: CalendarEvent, destination_label: str) -> dict:
         family=source.family,
         source_key=source.source_key,
         all_day=source.all_day,
+        timezone=source.timezone,
         description=source.description,
         location=source.location,
         source_url=source.source_url,
@@ -85,4 +86,3 @@ def promote_matching_events(
             )
         )
     return results
-

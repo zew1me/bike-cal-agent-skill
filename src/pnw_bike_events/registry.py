@@ -74,9 +74,10 @@ FAMILIES: tuple[SourceFamily, ...] = (
             "https://mfgcyclocross.bike/",
             "https://cascadecross.com/",
             "https://cxr.racing/",
+            "https://sscxwc26bham.com/",
         ),
-        keywords=("mfg", "cxr", "lemon peel", "cross", "cyclocross", "wnw"),
-        notes="Bundle MFG, CXR, Lemon Peel, Cascade Cross, and Wednesday Night Worlds cross-country.",
+        keywords=("mfg", "cxr", "lemon peel", "cross", "cyclocross", "wnw", "single speed cyclocross world championship", "sscxwc", "sscxwc26bham"),
+        notes="Bundle MFG, CXR, Lemon Peel, Cascade Cross, Wednesday Night Worlds cross-country, and marquee one-off cyclocross events such as SSCXWC in Bellingham.",
     ),
     SourceFamily(
         slug="wider-pnw",
@@ -84,11 +85,25 @@ FAMILIES: tuple[SourceFamily, ...] = (
         disciplines=("gravel", "road", "stage-race"),
         urls=(
             "https://www.belgianwaffleride.bike/",
+            "https://www.kettlemettle.ca/",
+            "https://www.rebeccasprivateidaho.com/",
+            "https://tourdewhatcom.com/",
+            "https://www.tourdebloom.com/",
             "https://www.grinduro.com/",
             "https://obra.org/",
         ),
-        keywords=("tour de bloom", "belgian waffle", "grinduro", "obra", "portland"),
-        notes="Catch-all for the wider-net family once core sources are handled.",
+        keywords=(
+            "tour de bloom",
+            "tour de whatcom",
+            "belgian waffle",
+            "bwr bc",
+            "kettle mettle",
+            "rebecca's private idaho",
+            "grinduro",
+            "obra",
+            "portland",
+        ),
+        notes="Catch-all for the wider-net family once core sources are handled; only apply events with exact current-year official dates.",
     ),
 )
 
@@ -106,4 +121,3 @@ def classify_family(summary: str, description: str = "") -> str:
         if any(keyword in haystack for keyword in family.keywords):
             return family.slug
     return "unclassified"
-

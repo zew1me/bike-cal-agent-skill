@@ -82,3 +82,27 @@ def patch_event(calendar_name: str, event_id: str, body: dict[str, Any], *, dry_
     }
     return _run_gws(["calendar", "events", "patch"], params=params, body=body)
 
+
+def delete_event(calendar_name: str, event_id: str, *, dry_run: bool = False) -> dict[str, Any]:
+    if dry_run:
+        return {"dry_run": True, "calendar": calendar_name, "eventId": event_id}
+    command = [
+        "gws",
+        "calendar",
+        "events",
+        "delete",
+        "--format",
+        "json",
+        "--params",
+        json.dumps(
+            {
+                "calendarId": resolve_calendar_id(calendar_name),
+                "eventId": event_id,
+                "sendUpdates": "none",
+            }
+        ),
+    ]
+    completed = subprocess.run(command, capture_output=True, text=True, check=False)
+    if completed.returncode != 0:
+        raise CalendarCliError(completed.stderr.strip() or completed.stdout.strip())
+    return {"deleted": True, "eventId": event_id, "calendar": calendar_name}

@@ -6,13 +6,17 @@ from .models import ActionPlan, CalendarEvent, PlanAction
 from .normalize import build_source_key, model_to_google_body, normalized_summary
 
 
+def _event_year(value: str) -> str:
+    return value[:4]
+
+
 def _match_existing(candidate: CalendarEvent, existing_by_key: dict[str, CalendarEvent], existing_events: list[CalendarEvent]) -> CalendarEvent | None:
     match = existing_by_key.get(candidate.source_key)
     if match is not None:
         return match
     candidate_summary = normalized_summary(candidate.summary)
     for event in existing_events:
-        if normalized_summary(event.summary) == candidate_summary:
+        if normalized_summary(event.summary) == candidate_summary and _event_year(event.start) == _event_year(candidate.start):
             return event
     return None
 
@@ -84,4 +88,3 @@ def reconcile_family(
         actions=actions,
         unresolved=unresolved,
     )
-
