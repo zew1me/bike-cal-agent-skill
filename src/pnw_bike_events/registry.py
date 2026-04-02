@@ -80,6 +80,17 @@ FAMILIES: tuple[SourceFamily, ...] = (
         notes="Bundle MFG, CXR, Lemon Peel, Cascade Cross, Wednesday Night Worlds cross-country, and marquee one-off cyclocross events such as SSCXWC in Bellingham.",
     ),
     SourceFamily(
+        slug="obra-oregon",
+        title="OBRA Oregon",
+        disciplines=("road", "criterium", "gravel"),
+        urls=(
+            "https://obra.org/schedule/2026/list/road",
+            "https://obra.org/schedule/2026/criterium",
+        ),
+        keywords=("obra", "pir", "mount tabor", "portland criterium", "barton park"),
+        notes="Use for current-year Oregon road and criterium events posted on the official OBRA schedule.",
+    ),
+    SourceFamily(
         slug="wider-pnw",
         title="Wider PNW",
         disciplines=("gravel", "road", "stage-race"),

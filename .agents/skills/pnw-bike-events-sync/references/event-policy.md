@@ -11,6 +11,7 @@ Included event types:
 - Pacific Raceways Circuit Race Series
 - cyclocross and cross-country series such as MFG, CXR, Lemon Peel, Wednesday Night Worlds XC, and marquee one-off events like the Single Speed Cyclocross World Championship
 - the wider-net family: BWR BC, Grinduro, Tour de Bloom, Tour de Whatcom, Kettle Mettle, Rebecca's Private Idaho, Mudslinger, and selected OBRA events
+- selected OBRA Oregon road and criterium events that are explicitly posted on the official current-year schedule
 
 Normalization defaults:
 

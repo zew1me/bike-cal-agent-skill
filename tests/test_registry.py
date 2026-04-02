@@ -12,3 +12,7 @@ def test_family_lookup() -> None:
 
 def test_classify_family_wider_pnw() -> None:
     assert classify_family("Rebecca's Private Idaho") == "wider-pnw"
+
+
+def test_classify_family_obra_oregon() -> None:
+    assert classify_family("Portland Criterium") == "obra-oregon"

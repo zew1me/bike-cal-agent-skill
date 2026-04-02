@@ -9,6 +9,7 @@ Default organizer families:
 - `mountain-classics`: current-year pages for Mt. Baker Hill Climb (`https://bakerhillclimb.com/race-information/`) or High Pass Challenge
 - `cyclocross-series`: MFG, CXR, Cascade Cross, Lemon Peel, Wednesday Night Worlds XC, and SSCXWC26BHAM (`https://sscxwc26bham.com/`)
 - `wider-pnw`: BWR BC (`https://www.belgianwaffleride.bike/blogs/news/bwr-british-columbia`), Kettle Mettle (`https://www.kettlemettle.ca/`), Rebecca's Private Idaho (`https://www.rebeccasprivateidaho.com/`), Tour de Bloom (`https://www.tourdebloom.com/`), Tour de Whatcom (`https://tourdewhatcom.com/`), Grinduro, OBRA, and other wider-net sources
+- `obra-oregon`: `https://obra.org/schedule/2026/list/road` and `https://obra.org/schedule/2026/criterium`
 
 Batch handling notes:
 
@@ -19,3 +20,4 @@ Batch handling notes:
 - BWR BC remains tracked for the wider-net family, but do not write it until the official site posts an exact current-year event date rather than a season/month teaser.
 - Redmond Cycling Club currently states that RAMROD is canceled for 2026, so do not add RAMROD unless that official status changes.
 - For cyclocross, treat January 2026 races as part of the closing 2025/2026 season; the upcoming verified batch should focus on fall 2026 onward for the 2026/2027 season.
+- The OBRA Oregon batch should stick to events explicitly listed on the official 2026 schedule and treat recurring PIR or Mount Tabor entries as series-spanning all-day placeholders unless a more specific official event page with times is used later.

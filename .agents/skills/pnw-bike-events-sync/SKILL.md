@@ -26,6 +26,7 @@ Use this skill to maintain the master `PNW Bike Events` calendar.
    uv run python .agents/skills/pnw-bike-events-sync/scripts/fetch_wider_pnw_marquee.py --target-year 2026
    uv run python .agents/skills/pnw-bike-events-sync/scripts/fetch_mountain_classics.py --target-year 2026
    uv run python .agents/skills/pnw-bike-events-sync/scripts/fetch_cyclocross_series.py --target-year 2026
+   uv run python .agents/skills/pnw-bike-events-sync/scripts/fetch_obra_oregon.py --target-year 2026
    ```
 5. Build a reconciliation report:
    ```bash
@@ -63,6 +64,7 @@ Use this skill to maintain the master `PNW Bike Events` calendar.
 - `scripts/fetch_wider_pnw_marquee.py` builds the current verified wider-net marquee batch from official 2026 pages such as Tour de Bloom, Kettle Mettle, Tour de Whatcom, and Rebecca's Private Idaho.
 - `scripts/fetch_mountain_classics.py` builds the current verified mountain-classics batch, currently anchored by the official 2026 Mt. Baker Hill Climb page.
 - `scripts/fetch_cyclocross_series.py` builds the current verified cyclocross batch, currently anchored by SSCXWC26BHAM for the upcoming 2026/2027 season.
+- `scripts/fetch_obra_oregon.py` builds the current verified OBRA Oregon road and criterium batch from the official 2026 schedule.
 - `scripts/reconcile_batch.py` compares normalized candidates against prior-season seeds and emits an insert/patch/unchanged plan.
 - `scripts/apply_batch.py` applies a verified plan through `gws`.
 - `scripts/dedupe_calendar.py` removes older duplicate entries while keeping the canonical synced event with `pnw_source_*` metadata.
