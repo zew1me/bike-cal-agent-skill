@@ -53,7 +53,7 @@ FAMILIES: tuple[SourceFamily, ...] = (
         disciplines=("road", "endurance"),
         urls=("https://www.redmondcyclingclub.org/",),
         keywords=("ramrod", "redmond cycling club", "sufferin summits"),
-        notes="Includes RAMROD and other RCC marquee rides when current-year pages exist.",
+        notes="Includes RAMROD and other RCC marquee rides when current-year pages exist; RAMROD is officially canceled for 2026 unless RCC posts a change.",
     ),
     SourceFamily(
         slug="mountain-classics",
@@ -64,7 +64,7 @@ FAMILIES: tuple[SourceFamily, ...] = (
             "https://ridewithgps.com/",
         ),
         keywords=("mt baker", "mount baker", "high pass", "hill climb"),
-        notes="Use for Mt. Baker Hill Climb and High Pass Challenge when official pages are live.",
+        notes="Use for Mt. Baker Hill Climb and High Pass Challenge when official pages are live; the current verified 2026 batch includes Mt. Baker Hill Climb only.",
     ),
     SourceFamily(
         slug="cyclocross-series",

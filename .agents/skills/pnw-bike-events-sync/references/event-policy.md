@@ -19,3 +19,4 @@ Normalization defaults:
 - source URL preserved in the description or extended properties
 - direct writes only for verified batches
 - wider-net marquee batches may intentionally exclude tracked events such as BWR BC until the official source publishes an exact current-year date
+- official cancellation notices override historical recurrence assumptions, for example RAMROD should be skipped for 2026 unless Redmond Cycling Club changes that status
